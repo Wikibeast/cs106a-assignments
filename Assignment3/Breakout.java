@@ -1,3 +1,4 @@
+
 /*
  * File: Breakout.java
  * -------------------
@@ -18,14 +19,14 @@ import java.awt.event.*;
 public class Breakout extends GraphicsProgram {
 
 	/** Width and height of application window in pixels */
-	public static final int APPLICATION_WIDTH = 600;
+	public static final int APPLICATION_WIDTH = 400;
 	public static final int APPLICATION_HEIGHT = 600;
 
 	/** Dimensions of game board (usually the same) */
 	private static final int WIDTH = APPLICATION_WIDTH;
 	//The minus 20 here is a an odd bug fix. For some reason, at some point, 
 	//the application window started loading 20px shorter than the game window.
-	private static final int HEIGHT = APPLICATION_HEIGHT;
+	private static final int HEIGHT = APPLICATION_HEIGHT - 20;
 
 	/** Dimensions of the paddle */
 	private static final int PADDLE_WIDTH = 60;
@@ -80,13 +81,6 @@ public class Breakout extends GraphicsProgram {
 	
 	/** Load additional resources */
 	AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
-	
-	/** Correctly initializes the size of the window */
-	public void init()
-	{
-	setSize(620,660);
-	}
-	
 	
 	/** Run the game Breakout. */
 	public void run() {
@@ -175,6 +169,7 @@ public class Breakout extends GraphicsProgram {
 			alertPlayer("Click to launch", 0);
 			waitForPlayer();
 		};
+
 	};
 
 	/** Waits for user clicks to start new rounds and new games */
@@ -254,7 +249,7 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 	private void addSpeed() {
-		if (speedUpper < 2.5){
+		if (speedUpper < 2){
 		speedUpper += SPEED_INCREASE_RATE;
 		}
 	}
@@ -336,6 +331,9 @@ public class Breakout extends GraphicsProgram {
 	private GRect block;
 	private GLabel alertBox;
 	
+	/** The initial vy value each time the ball is launched */
+	private double initVY;
+	
 	/** increases speed as game progresses */
 	private double speedUpper = 1;
 	
@@ -353,6 +351,3 @@ public class Breakout extends GraphicsProgram {
 	
 	/**Random Generator*/
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-
-	
-}

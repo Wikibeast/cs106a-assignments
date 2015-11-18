@@ -351,3 +351,4 @@ public class Breakout extends GraphicsProgram {
 	
 	/**Random Generator*/
 	private RandomGenerator rgen = RandomGenerator.getInstance();
+}

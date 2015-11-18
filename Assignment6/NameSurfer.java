@@ -45,12 +45,18 @@ public class NameSurfer extends ConsoleProgram implements NameSurferConstants {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Graph")) {
 			println("Graph: " + "\"" + textField.getText() + "\"");
+			println("NSE toString: " + testEntry.toString());
+			println("NSE getName: " + testEntry.getName());
+			println("NSE getRank(6): " + testEntry.getRank(6));
 		} else {
 			println("Clear");
 		}
 	}
 	
+	//Begin Testing Code
+	private NameSurferEntry testEntry = new NameSurferEntry("David 001 002 003 004 0 006 007 008 009 010 011");
 	
+	//End Testing Code
 	
 	
 	/** Instance Variables */

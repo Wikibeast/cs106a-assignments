@@ -28,7 +28,7 @@ public interface NameSurferConstants {
 
 /** The number of pixels to reserve at the top and bottom */
 	public static final int GRAPH_MARGIN_SIZE = 20;
-
+	
 	/** The width of the search field */
 	public static final int FIELD_WIDTH = 40;
 

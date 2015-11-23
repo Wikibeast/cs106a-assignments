@@ -20,6 +20,8 @@ public class NameSurfer extends Program implements NameSurferConstants {
  */
 	public void init() {
 		initInteractors();
+		graph = new NameSurferGraph();
+		add(graph);
 	    addActionListeners();
 	}
 
@@ -45,21 +47,18 @@ public class NameSurfer extends Program implements NameSurferConstants {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Graph")) {
 			String name = textField.getText();
-
+			graph.addEntry(nsDatabase.findEntry(name));
 		} else {
-			println("Clear");
+			graph.clear();
 		}
 	}
 	
-	//Begin Testing Code
-	private NameSurferDataBase nsDatabase = new NameSurferDataBase(NAMES_DATA_FILE);
-	
-	//End Testing Code
 	
 	
 	/** Instance Variables */
 	private JTextField textField;
-
+	private NameSurferGraph graph;
+	private NameSurferDataBase nsDatabase = new NameSurferDataBase(NAMES_DATA_FILE);
 	
 	
 }

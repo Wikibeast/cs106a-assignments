@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+
+import acm.util.ErrorException;
+
 /*
  * File: NameSurferDataBase.java
  * -----------------------------
@@ -19,9 +26,35 @@ public class NameSurferDataBase implements NameSurferConstants {
  * occurs as the file is being read.
  */
 	public NameSurferDataBase(String filename) {
-		// You fill this in //
+		BufferedReader rd = readNameFile(filename);
+		readIntoDataBase(rd);
+		
 	}
 	
+private void readIntoDataBase(BufferedReader rd) {
+	try {
+		while (true) {
+			String line = rd.readLine();
+			if (line == null) break;
+			NameSurferEntry entry = new NameSurferEntry(line);
+			nameData.put(entry.getName(), entry);
+		}
+		rd.close();
+	} catch(IOException ex) {
+		throw new ErrorException(ex);
+	}
+}
+
+private BufferedReader readNameFile(String filename) {
+	BufferedReader rdr = null;
+	try {
+		rdr = new BufferedReader ( new FileReader(filename));
+	} catch (IOException ex) {
+		throw new ErrorException(ex);
+	}
+	return rdr;	
+}
+
 /* Method: findEntry(name) */
 /**
  * Returns the NameSurferEntry associated with this name, if one
@@ -29,8 +62,10 @@ public class NameSurferDataBase implements NameSurferConstants {
  * method returns null.
  */
 	public NameSurferEntry findEntry(String name) {
-		// You need to turn this stub into a real implementation //
-		return null;
+		return nameData.get(name);
 	}
-}
 
+/** Instance Variables */
+
+Map<String, NameSurferEntry> nameData = new HashMap<String, NameSurferEntry>();
+}
